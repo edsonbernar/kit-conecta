@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--A-HEAD-->
+<title>Kit Conecta</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Qualquer conector, em qualquer lugar, num estojo do tamanho de um cartão. Cabo USB-C de 20 W, adaptadores Lightning, micro-USB e USB-A, chavinha de chip.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap">
+<style>
+/* Layout: uma coluna no celular, duas a partir de 720px; Papel como chão, caixas Brancas só para as fotos, azul só onde se clica. */
+:root{
+  --cor-fundo:#F4F3EF; --cor-superficie:#FFFFFF; --cor-foto:#FFFFFF;
+  --cor-texto:#1B1F2A; --cor-primaria:#1B1F2A;
+  --cor-secundaria:#8EA6D6; --cor-texto-sobre-secundaria:#1B1F2A;
+  --cor-texto-suave:#5A6070;
+  --cor-cta:#2E6BE6; --cor-cta-hover:#2457C2; --cor-texto-sobre-cta:#FFFFFF;
+  --cor-borda:#7E8494; --cor-linha:#E3E4E8; --cor-foco:#2E6BE6;
+  --cor-erro:#B3261E; --cor-sucesso:#1E7A4C;
+  --fonte-titulos:"Sora","Segoe UI",system-ui,sans-serif;
+  --fonte-texto:"Inter","Segoe UI",system-ui,sans-serif;
+  --tamanho-pequeno:0.8125rem; --tamanho-texto:1rem; --tamanho-h4:1.25rem; --tamanho-h3:1.5625rem;
+  --tamanho-h2:1.953rem; --tamanho-h1:2.441rem; --tamanho-destaque:3.052rem;
+  --espaco-1:8px; --espaco-2:16px; --espaco-3:24px; --espaco-4:32px; --espaco-6:48px; --espaco-8:64px;
+  --raio:12px; --sombra:0 2px 0 var(--cor-linha); --largura-maxima:1120px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --cor-fundo:#1B1F2A; --cor-superficie:#262B38; --cor-texto:#F4F3EF; --cor-primaria:#F4F3EF;
+  --cor-texto-suave:#B4B9C6; --cor-borda:#8A90A0; --cor-linha:#333948; --cor-erro:#F2A59E; --cor-sucesso:#7FD3A4; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --cor-fundo:#1B1F2A; --cor-superficie:#262B38; --cor-texto:#F4F3EF; --cor-primaria:#F4F3EF;
+  --cor-texto-suave:#B4B9C6; --cor-borda:#8A90A0; --cor-linha:#333948; --cor-erro:#F2A59E; --cor-sucesso:#7FD3A4; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cor-fundo);color:var(--cor-texto);font-family:var(--fonte-texto);font-size:var(--tamanho-texto);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--cor-cta)}
+:focus-visible{outline:3px solid var(--cor-foco);outline-offset:2px}
+.wrap{max-width:var(--largura-maxima);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--fonte-titulos);font-weight:700;line-height:1.1;letter-spacing:-.01em;margin:0;text-wrap:balance}
+h2{font-size:clamp(1.6rem,4vw,var(--tamanho-h2));margin-bottom:var(--espaco-2)}
+h3{font-size:var(--tamanho-h4);font-weight:600}
+p{margin:0 0 var(--espaco-2);max-width:62ch}
+.kicker{font-family:var(--fonte-titulos);font-weight:600;font-size:var(--tamanho-pequeno);letter-spacing:.2em;text-transform:uppercase;color:var(--cor-cta);margin:0 0 var(--espaco-2)}
+.suave{color:var(--cor-texto-suave)}
+section{padding-block:var(--espaco-6)}
+section + section{border-top:1px solid var(--cor-linha)}
+@media (min-width:720px){section{padding-block:var(--espaco-8)}}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 24px;border-radius:var(--raio);font-family:var(--fonte-titulos);font-weight:600;font-size:var(--tamanho-texto);text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s}
+.btn-p{background:var(--cor-cta);color:var(--cor-texto-sobre-cta)}
+.btn-p:hover{background:var(--cor-cta-hover)}
+.btn-s{background:transparent;color:var(--cor-texto);border-color:var(--cor-texto)}
+.btn-s:hover{background:var(--cor-linha)}
+.acoes{display:flex;flex-wrap:wrap;gap:var(--espaco-2);align-items:center}
+
+/* cabeçalho */
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--espaco-2);min-height:72px}
+.logo{font-family:var(--fonte-titulos);font-weight:700;letter-spacing:.32em;text-transform:uppercase;font-size:var(--tamanho-pequeno);color:var(--cor-texto);text-decoration:none;padding-block:12px}
+header a.link{color:var(--cor-texto);font-family:var(--fonte-titulos);font-weight:600;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;padding-inline:4px}
+header a.link:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* topo */
+.topo{padding-block:var(--espaco-4) var(--espaco-6)}
+.topo .wrap{display:grid;gap:var(--espaco-4);align-items:center}
+@media (min-width:720px){.topo .wrap{grid-template-columns:1.05fr 1fr;gap:var(--espaco-6)}.topo{padding-block:var(--espaco-6) var(--espaco-8)}}
+.topo h1{font-size:clamp(2.2rem,6vw,var(--tamanho-destaque))}
+.topo .sub{font-size:var(--tamanho-h4);margin:var(--espaco-3) 0}
+.foto{background:var(--cor-foto);border-radius:var(--raio);box-shadow:var(--sombra);padding:var(--espaco-2);min-width:0}
+.foto img{border-radius:6px}
+.nota{font-size:var(--tamanho-pequeno);color:var(--cor-texto-suave);margin-top:var(--espaco-2)}
+.etiqueta{display:inline-block;background:var(--cor-secundaria);color:var(--cor-texto-sobre-secundaria);font-family:var(--fonte-titulos);font-weight:600;font-size:var(--tamanho-pequeno);padding:4px 12px;border-radius:999px}
+
+/* cena */
+.cena .wrap{display:grid;gap:var(--espaco-3)}
+@media (min-width:720px){.cena .wrap{grid-template-columns:1fr 1fr;gap:var(--espaco-6)}}
+.cena .fala{font-family:var(--fonte-titulos);font-weight:600;font-size:clamp(1.4rem,3.2vw,var(--tamanho-h3));line-height:1.25;margin:0}
+.cena .fala + .fala{margin-top:var(--espaco-2);color:var(--cor-texto-suave)}
+
+/* estojo */
+.estojo .wrap{display:grid;gap:var(--espaco-4)}
+@media (min-width:720px){.estojo .wrap{grid-template-columns:1fr 1fr;align-items:start;gap:var(--espaco-6)}.estojo .foto{position:sticky;top:var(--espaco-3)}}
+.itens{margin:0;padding:0;list-style:none;border-top:1px solid var(--cor-linha)}
+.itens li{display:grid;grid-template-columns:auto 1fr;gap:var(--espaco-2);padding:var(--espaco-2) 0;border-bottom:1px solid var(--cor-linha);min-width:0}
+.itens .n{font-family:var(--fonte-titulos);font-weight:600;color:var(--cor-cta);font-variant-numeric:tabular-nums;min-width:2ch}
+.itens b{font-family:var(--fonte-titulos);font-weight:600;display:block}
+.itens span{color:var(--cor-texto-suave)}
+
+/* limites */
+.limites ul{margin:0;padding:0;list-style:none;display:grid;gap:var(--espaco-2)}
+.limites li{padding-left:var(--espaco-3);position:relative}
+.limites li::before{content:"";position:absolute;left:0;top:.7em;width:12px;height:2px;background:var(--cor-texto)}
+
+/* prova social */
+.fatos{margin:0;padding:0;list-style:none;display:grid;gap:var(--espaco-2)}
+@media (min-width:720px){.fatos{grid-template-columns:repeat(3,1fr);gap:var(--espaco-3)}}
+.fatos li{border-top:2px solid var(--cor-texto);padding-top:var(--espaco-2)}
+.fatos b{font-family:var(--fonte-titulos);font-weight:600;display:block;margin-bottom:4px}
+
+/* pedido */
+.pedido .wrap{display:grid;gap:var(--espaco-4)}
+@media (min-width:720px){.pedido .wrap{grid-template-columns:1fr 1fr;gap:var(--espaco-6);align-items:start}}
+.preco{font-family:var(--fonte-titulos);font-weight:700;font-size:var(--tamanho-destaque);line-height:1;letter-spacing:-.02em}
+.preco small{font-size:var(--tamanho-h4);font-weight:600;color:var(--cor-texto-suave);letter-spacing:0}
+form{display:grid;gap:var(--espaco-3);min-width:0}
+label,legend{font-family:var(--fonte-titulos);font-weight:600;display:block;margin-bottom:var(--espaco-1)}
+input[type=email]{width:100%;min-height:48px;padding:10px 14px;font:inherit;font-size:var(--tamanho-texto);color:var(--cor-texto);background:var(--cor-superficie);border:1.5px solid var(--cor-borda);border-radius:var(--raio)}
+input[type=email]:focus{outline:3px solid var(--cor-foco);outline-offset:2px;border-color:var(--cor-cta)}
+.campo.erro input{border-color:var(--cor-erro)}
+.msg-erro{display:none;color:var(--cor-erro);font-size:var(--tamanho-pequeno);margin-top:6px}
+.campo.erro .msg-erro{display:block}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+.opcoes{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--espaco-1)}
+@media (min-width:480px){.opcoes{grid-template-columns:repeat(4,1fr)}}
+.opcoes label{margin:0;position:relative;display:flex;align-items:center;justify-content:center;min-height:48px;padding:8px 10px;border:1.5px solid var(--cor-borda);border-radius:var(--raio);background:var(--cor-superficie);cursor:pointer;font-weight:500;font-family:var(--fonte-texto);text-align:center}
+.opcoes input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.opcoes input:checked + span{font-family:var(--fonte-titulos);font-weight:600}
+.opcoes label:has(input:checked){border-color:var(--cor-cta);box-shadow:inset 0 0 0 1px var(--cor-cta)}
+.opcoes label:has(input:focus-visible){outline:3px solid var(--cor-foco);outline-offset:2px}
+.obrigado{display:none;padding:var(--espaco-3);border:1.5px solid var(--cor-sucesso);border-radius:var(--raio)}
+.obrigado b{font-family:var(--fonte-titulos);color:var(--cor-sucesso)}
+form.enviado{display:none}
+form.enviado + .obrigado{display:block}
+
+/* faq */
+details{border-top:1px solid var(--cor-linha)}
+details:last-of-type{border-bottom:1px solid var(--cor-linha)}
+summary{cursor:pointer;list-style:none;font-family:var(--fonte-titulos);font-weight:600;font-size:var(--tamanho-h4);padding:var(--espaco-2) 0;display:flex;justify-content:space-between;gap:var(--espaco-2);align-items:center;min-height:56px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-weight:600;color:var(--cor-cta);flex:none;width:24px;text-align:center}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:var(--espaco-2)}
+
+footer{padding-block:var(--espaco-4);border-top:1px solid var(--cor-linha);font-size:var(--tamanho-pequeno);color:var(--cor-texto-suave)}
+footer p{max-width:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{@page{size:A4;margin:12mm}section{padding-block:28px}details,.foto,.itens li,.limites li,footer,.pedido .wrap > div,.cena .wrap > div{break-inside:avoid}h2,.kicker{break-after:avoid}.topo .wrap,.estojo .wrap,.pedido .wrap,.cena .wrap{grid-template-columns:1fr 1fr}.estojo .foto{position:static}summary::after{display:none}.obrigado{display:none!important}}
+</style>
+<!--/A-HEAD-->
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="logo" href="#topo">Kit Conecta</a>
+  <a class="link" href="#estojo">Ver o kit</a>
+</div></header>
+
+<section class="topo" id="topo"><div class="wrap">
+  <div>
+    <p class="kicker">Tem um cabo aí?</p>
+    <h1 id="titulo" data-variante="A">Qualquer conector, no bolso.</h1>
+    <p class="sub">Um cabo USB-C de 20 W, adaptadores Lightning, micro-USB e USB-A, chavinha de chip e espaço para um chip extra. Num estojo do tamanho de um cartão de crédito.</p>
+    <div class="acoes">
+      <a class="btn btn-p" href="#pedido" data-evento="cta_topo">Quero um no bolso</a>
+      <a class="btn btn-s" href="#estojo">O que vem no estojo</a>
+    </div>
+    <p class="nota">Carrega celular e fone. Notebook, não.</p>
+  </div>
+  <div class="foto"><img src="img/kit-aberto.jpg" width="1400" height="933" alt="Três estojos Kit Conecta, um deles aberto mostrando o cabo USB-C, os três adaptadores, a chavinha e o chip, com as peças soltas abaixo" fetchpriority="high"></div>
+</div></section>
+
+<section class="cena"><div class="wrap">
+  <div>
+    <p class="kicker">A cena</p>
+    <h2>Terça, 14h, celular em 12%.</h2>
+    <p>Você está na sala de reunião do cliente. Ainda faltam duas reuniões e o trajeto de volta. Pede um cabo emprestado: o colega tem Lightning, o seu celular é USB-C.</p>
+    <p>Desce até a loja de conveniência do prédio e paga caro num cabo genérico. À noite, abre a gaveta em casa e vê quatro iguais. Nenhum estava na bolsa.</p>
+  </div>
+  <div>
+    <p class="fala">Você tem cabo em todo lugar, menos onde está.</p>
+    <p class="fala">É para isso que o Kit Conecta existe: para a próxima vez que alguém perguntar "tem um cabo aí?", você ter.</p>
+  </div>
+</div></section>
+
+<section class="estojo" id="estojo"><div class="wrap">
+  <div class="foto"><img src="img/pecas.jpg" width="1200" height="800" alt="As peças do kit lado a lado: cabo USB-C curto com velcro, adaptadores Lightning, micro-USB e USB-A, chavinha de chip e um chip" loading="lazy"></div>
+  <div>
+    <p class="kicker">O que vem no estojo</p>
+    <h2>Um cabo, quatro conectores, e o chip resolvido.</h2>
+    <ol class="itens">
+      <li><span class="n">1</span><div><b>Cabo USB-C para USB-C, curto, 20 W</b><span>Carrega celular e fone. É curto de propósito: cabe no estojo e no bolso.</span></div></li>
+      <li><span class="n">2</span><div><b>Adaptador Lightning, certificado</b><span>Funciona com iPhone e AirPods com entrada Lightning, sem aviso de acessório não compatível.</span></div></li>
+      <li><span class="n">3</span><div><b>Adaptador micro-USB</b><span>Fone, caixinha de som, leitor antigo: o que ainda vive de micro-USB.</span></div></li>
+      <li><span class="n">4</span><div><b>Adaptador USB-A</b><span>Para a saída USB do carro, do avião, da TV e do carregador velho.</span></div></li>
+      <li><span class="n">5</span><div><b>Chavinha de chip e espaço para um chip extra</b><span>Troca de chip na viagem sem procurar clipe.</span></div></li>
+    </ol>
+    <p class="nota"><span class="etiqueta">85 × 54 mm</span>&nbsp; a área de um cartão de crédito. Mais grosso que um cartão, claro: tem um cabo dentro.</p>
+  </div>
+</div></section>
+
+<section class="limites"><div class="wrap">
+  <p class="kicker">Antes que você pergunte</p>
+  <h2>O que ele não faz.</h2>
+  <ul>
+    <li><b>Não é carregador nem power bank.</b> Não tem bateria e não liga na tomada sozinho. Ele vai entre a fonte e o aparelho.</li>
+    <li><b>Não carrega notebook.</b> O cabo é de 20 W, feito para celular e fone.</li>
+    <li><b>Não é cabo longo de mesa.</b> É curto para caber no estojo. Em casa, continue com o seu.</li>
+  </ul>
+  <p style="margin-top:var(--espaco-3)">Se você precisa de um desses três, este kit não é para você. Preferimos dizer agora.</p>
+</div></section>
+
+<section class="prova" id="prova"><div class="wrap">
+  <p class="kicker">Prova social</p>
+  <h2>Ainda não temos avaliações. E não vamos inventar.</h2>
+  <p>O kit está em pré-venda: ninguém recebeu um ainda. As primeiras avaliações entram aqui, com nome e data, quando os primeiros estojos chegarem. Até lá, o que dá para mostrar é o que dá para conferir:</p>
+  <ul class="fatos">
+    <li><b>Adaptador Lightning certificado.</b> Sem aviso de "acessório não compatível" no iPhone.</li>
+    <li><b>Cabo de 20 W.</b> O mesmo padrão do carregador de celular que você já usa.</li>
+    <li><b>85 × 54 mm.</b> A área de um cartão de crédito. Meça o seu.</li>
+  </ul>
+  <p class="nota">Quantas pessoas já deixaram o e-mail: a medir. O número aparece aqui quando for real.</p>
+</div></section>
+<section class="pedido" id="pedido"><div class="wrap">
+  <div>
+    <p class="kicker">Pré-venda</p>
+    <h2>Avise-me quando estiver à venda.</h2>
+    <p class="preco">R$ 89 <small>preço previsto</small></p>
+    <p>Um estojo com cabo, três adaptadores, chavinha e porta-chip. Deixe seu e-mail: quando o lote estiver pronto, você recebe o link e o preço final antes de todo mundo.</p>
+    <p class="suave">Sem lista de marketing. Um e-mail quando abrir, e só.</p>
+  </div>
+  <div>
+    <form id="form-pedido" novalidate data-endpoint="">
+      <div class="campo" id="campo-email">
+        <label for="email">Seu e-mail</label>
+        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="voce@exemplo.com" required>
+        <div class="msg-erro" id="erro-email">Digite um e-mail com @ e domínio, como nome@exemplo.com, para a gente conseguir avisar.</div>
+      </div>
+      <fieldset>
+        <legend>A partir de quanto esse kit fica caro para você?</legend>
+        <div class="opcoes">
+          <label><input type="radio" name="fica_caro" value="69"><span>R$ 69</span></label>
+          <label><input type="radio" name="fica_caro" value="89"><span>R$ 89</span></label>
+          <label><input type="radio" name="fica_caro" value="119"><span>R$ 119</span></label>
+          <label><input type="radio" name="fica_caro" value="mais"><span>Mais de 119</span></label>
+        </div>
+      </fieldset>
+      <div><button class="btn btn-p" type="submit" id="btn-enviar">Quero um no bolso</button></div>
+    </form>
+    <div class="obrigado" id="obrigado" role="status">
+      <b>Anotado.</b> Quando o kit abrir, você recebe um e-mail com o link. Enquanto isso, o cabo que está na gaveta continua lá.
+    </div>
+  </div>
+</div></section>
+
+<section class="faq"><div class="wrap">
+  <p class="kicker">Perguntas</p>
+  <h2>O que costumam perguntar.</h2>
+  <details><summary>Funciona com iPhone?</summary><p>Sim. O adaptador Lightning é certificado, então não dá aviso de acessório não compatível. iPhone com entrada USB-C usa o cabo direto, sem adaptador.</p></details>
+  <details><summary>Carrega notebook?</summary><p>Não. O cabo é de 20 W, para celular e fone. Notebook pede 45 W ou mais, e um cabo curto de bolso não é o lugar disso.</p></details>
+  <details><summary>Cabe na carteira mesmo?</summary><p>Tem a área de um cartão de crédito, 85 por 54 mm. É mais grosso que um cartão, porque tem um cabo dentro. Cabe no bolso da calça, na bolsa e no compartimento de moedas da carteira; na parte dos cartões, não.</p></details>
+  <details><summary>E se eu trocar de celular?</summary><p>O cabo USB-C continua servindo. O adaptador que você deixar de usar vira o cabo de emergência de quem está do seu lado, que é justamente quem costuma pedir.</p></details>
+  <details><summary>Quando chega e quanto é o frete?</summary><p>A definir. Esta página existe para medir o interesse antes de produzir o lote. Quem deixar o e-mail recebe o link e as condições primeiro.</p></details>
+</div></section>
+
+<footer><div class="wrap">
+  <p><b>Kit Conecta</b> · projeto da disciplina Digital Growth &amp; AI-Driven Marketing, MBA Impacta, 2026 · Edson da Silva Bernardino.</p>
+  <p>Página de teste: preço e prazo são hipóteses e vão mudar com o que for medido aqui. Nenhum dado é vendido ou compartilhado.</p>
+</div></footer>
+
+<script>
+(function(){
+  // ---- Medição (GA4). Troque pelo seu ID, por exemplo "G-AB12CD34EF". Vazio = só registra no console. [MINHA]
+  var GA_ID = "";
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  if (GA_ID) {
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+    gtag('js', new Date()); gtag('config', GA_ID);
+  }
+  function evento(nome, dados){
+    dados = dados || {}; dados.variante = variante;
+    gtag('event', nome, dados);
+    if (!GA_ID) { try { console.log('[evento]', nome, dados); } catch(e){} }
+  }
+
+  // ---- Teste A/B do topo (hipótese 2: cobertura versus organização). Sorteio 50/50, fixo por navegador.
+  var titulos = { A: 'Qualquer conector, no bolso.', B: 'Seus cabos, organizados.' };
+  var variante = 'A';
+  try {
+    variante = localStorage.getItem('kc_variante');
+    if (variante !== 'A' && variante !== 'B') { variante = Math.random() < 0.5 ? 'A' : 'B'; localStorage.setItem('kc_variante', variante); }
+  } catch(e) { variante = 'A'; }
+  var h1 = document.getElementById('titulo');
+  h1.textContent = titulos[variante]; h1.setAttribute('data-variante', variante);
+  evento('ver_topo');
+
+  // ---- Cliques no CTA do topo
+  var ctaTopo = document.querySelector('[data-evento="cta_topo"]');
+  if (ctaTopo) ctaTopo.addEventListener('click', function(){ evento('cta_topo'); });
+
+  // ---- Formulário: valida, registra e agradece. Sem endpoint, não envia nada a lugar nenhum.
+  var form = document.getElementById('form-pedido');
+  var campo = document.getElementById('campo-email');
+  var email = document.getElementById('email');
+  email.addEventListener('input', function(){ campo.classList.remove('erro'); });
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    if (!ok) { campo.classList.add('erro'); email.focus(); return; }
+    var marcado = form.querySelector('input[name="fica_caro"]:checked');
+    var resposta = marcado ? marcado.value : 'sem_resposta';
+    evento('preco_resposta', { fica_caro: resposta });
+    evento('form_envio');
+    var endpoint = form.getAttribute('data-endpoint');
+    var btn = document.getElementById('btn-enviar');
+    btn.disabled = true;
+    var concluir = function(){ form.classList.add('enviado'); document.getElementById('obrigado').scrollIntoView({block:'nearest'}); };
+    if (endpoint) {
+      fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify({ email: email.value.trim(), fica_caro: resposta, variante: variante }) })
+        .then(concluir, concluir);
+    } else { concluir(); }
+  });
+})();
+</script>
+</body>
+</html>
