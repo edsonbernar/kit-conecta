@@ -7,10 +7,12 @@
 <title>Kit Conecta</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Qualquer conector, em qualquer lugar, num estojo do tamanho de um cartão. Cabo USB-C de 20 W, adaptadores Lightning, micro-USB e USB-A, chavinha de chip.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap">
+<link rel="preload" href="fontes/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fontes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" imagesrcset="img/kit-aberto-720.webp 720w, img/kit-aberto-1080.webp 1080w, img/kit-aberto-1400.webp 1400w" imagesizes="(min-width: 1152px) 540px, (min-width: 720px) 50vw, 100vw">
 <style>
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;font-display:swap;src:url(fontes/inter-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:"Sora";font-style:normal;font-weight:100 800;font-display:swap;src:url(fontes/sora-latin.woff2) format("woff2");unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 /* Layout: uma coluna no celular, duas a partir de 720px; Papel como chão, caixas Brancas só para as fotos, azul só onde se clica. */
 :root{
   --cor-fundo:#F4F3EF; --cor-superficie:#FFFFFF; --cor-foto:#FFFFFF;
@@ -18,7 +20,7 @@
   --cor-secundaria:#8EA6D6; --cor-texto-sobre-secundaria:#1B1F2A;
   --cor-texto-suave:#5A6070;
   --cor-cta:#2E6BE6; --cor-cta-hover:#2457C2; --cor-texto-sobre-cta:#FFFFFF;
-  --cor-borda:#7E8494; --cor-linha:#E3E4E8; --cor-foco:#2E6BE6;
+  --cor-rotulo:#2457C2; --cor-borda:#7E8494; --cor-linha:#E3E4E8; --cor-foco:#2E6BE6;
   --cor-erro:#B3261E; --cor-sucesso:#1E7A4C;
   --fonte-titulos:"Sora","Segoe UI",system-ui,sans-serif;
   --fonte-texto:"Inter","Segoe UI",system-ui,sans-serif;
@@ -29,10 +31,10 @@
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --cor-fundo:#1B1F2A; --cor-superficie:#262B38; --cor-texto:#F4F3EF; --cor-primaria:#F4F3EF;
-  --cor-texto-suave:#B4B9C6; --cor-borda:#8A90A0; --cor-linha:#333948; --cor-erro:#F2A59E; --cor-sucesso:#7FD3A4; color-scheme:dark } }
+  --cor-texto-suave:#B4B9C6; --cor-rotulo:#8EA6D6; --cor-borda:#8A90A0; --cor-linha:#333948; --cor-erro:#F2A59E; --cor-sucesso:#7FD3A4; color-scheme:dark } }
 :root[data-theme="dark"]{
   --cor-fundo:#1B1F2A; --cor-superficie:#262B38; --cor-texto:#F4F3EF; --cor-primaria:#F4F3EF;
-  --cor-texto-suave:#B4B9C6; --cor-borda:#8A90A0; --cor-linha:#333948; --cor-erro:#F2A59E; --cor-sucesso:#7FD3A4; color-scheme:dark }
+  --cor-texto-suave:#B4B9C6; --cor-rotulo:#8EA6D6; --cor-borda:#8A90A0; --cor-linha:#333948; --cor-erro:#F2A59E; --cor-sucesso:#7FD3A4; color-scheme:dark }
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -45,7 +47,7 @@ h1,h2,h3{font-family:var(--fonte-titulos);font-weight:700;line-height:1.1;letter
 h2{font-size:clamp(1.6rem,4vw,var(--tamanho-h2));margin-bottom:var(--espaco-2)}
 h3{font-size:var(--tamanho-h4);font-weight:600}
 p{margin:0 0 var(--espaco-2);max-width:62ch}
-.kicker{font-family:var(--fonte-titulos);font-weight:600;font-size:var(--tamanho-pequeno);letter-spacing:.2em;text-transform:uppercase;color:var(--cor-cta);margin:0 0 var(--espaco-2)}
+.kicker{font-family:var(--fonte-titulos);font-weight:600;font-size:var(--tamanho-pequeno);letter-spacing:.2em;text-transform:uppercase;color:var(--cor-rotulo);margin:0 0 var(--espaco-2)}
 .suave{color:var(--cor-texto-suave)}
 section{padding-block:var(--espaco-6)}
 section + section{border-top:1px solid var(--cor-linha)}
@@ -87,7 +89,7 @@ header a.link:hover{text-decoration:underline;text-underline-offset:4px}
 @media (min-width:720px){.estojo .wrap{grid-template-columns:1fr 1fr;align-items:start;gap:var(--espaco-6)}.estojo .foto{position:sticky;top:var(--espaco-3)}}
 .itens{margin:0;padding:0;list-style:none;border-top:1px solid var(--cor-linha)}
 .itens li{display:grid;grid-template-columns:auto 1fr;gap:var(--espaco-2);padding:var(--espaco-2) 0;border-bottom:1px solid var(--cor-linha);min-width:0}
-.itens .n{font-family:var(--fonte-titulos);font-weight:600;color:var(--cor-cta);font-variant-numeric:tabular-nums;min-width:2ch}
+.itens .n{font-family:var(--fonte-titulos);font-weight:600;color:var(--cor-rotulo);font-variant-numeric:tabular-nums;min-width:2ch}
 .itens b{font-family:var(--fonte-titulos);font-weight:600;display:block}
 .itens span{color:var(--cor-texto-suave)}
 
@@ -149,6 +151,7 @@ footer p{max-width:none}
   <a class="logo" href="#topo">Kit Conecta</a>
   <a class="link" href="#estojo">Ver o kit</a>
 </div></header>
+<main>
 
 <section class="topo" id="topo"><div class="wrap">
   <div>
@@ -161,7 +164,10 @@ footer p{max-width:none}
     </div>
     <p class="nota">Carrega celular e fone. Notebook, não.</p>
   </div>
-  <div class="foto"><img src="img/kit-aberto.jpg" width="1400" height="933" alt="Três estojos Kit Conecta, um deles aberto mostrando o cabo USB-C, os três adaptadores, a chavinha e o chip, com as peças soltas abaixo" fetchpriority="high"></div>
+  <div class="foto"><picture>
+    <source type="image/webp" srcset="img/kit-aberto-720.webp 720w, img/kit-aberto-1080.webp 1080w, img/kit-aberto-1400.webp 1400w" sizes="(min-width: 1152px) 540px, (min-width: 720px) 50vw, 100vw">
+    <img src="img/kit-aberto.jpg" width="1400" height="933" alt="Três estojos Kit Conecta, um deles aberto mostrando o cabo USB-C, os três adaptadores, a chavinha e o chip, com as peças soltas abaixo" fetchpriority="high">
+  </picture></div>
 </div></section>
 
 <section class="cena"><div class="wrap">
@@ -178,7 +184,10 @@ footer p{max-width:none}
 </div></section>
 
 <section class="estojo" id="estojo"><div class="wrap">
-  <div class="foto"><img src="img/pecas.jpg" width="1200" height="800" alt="As peças do kit lado a lado: cabo USB-C curto com velcro, adaptadores Lightning, micro-USB e USB-A, chavinha de chip e um chip" loading="lazy"></div>
+  <div class="foto"><picture>
+    <source type="image/webp" srcset="img/pecas-720.webp 720w, img/pecas-1080.webp 1080w" sizes="(min-width: 1152px) 540px, (min-width: 720px) 50vw, 100vw">
+    <img src="img/pecas.jpg" width="1200" height="800" alt="As peças do kit lado a lado: cabo USB-C curto com velcro, adaptadores Lightning, micro-USB e USB-A, chavinha de chip e um chip" loading="lazy">
+  </picture></div>
   <div>
     <p class="kicker">O que vem no estojo</p>
     <h2>Um cabo, quatro conectores, e o chip resolvido.</h2>
@@ -257,6 +266,7 @@ footer p{max-width:none}
   <details><summary>Quando chega e quanto é o frete?</summary><p>A definir. Esta página existe para medir o interesse antes de produzir o lote. Quem deixar o e-mail recebe o link e as condições primeiro.</p></details>
 </div></section>
 
+</main>
 <footer><div class="wrap">
   <p><b>Kit Conecta</b> · projeto da disciplina Digital Growth &amp; AI-Driven Marketing, MBA Impacta, 2026 · Edson da Silva Bernardino.</p>
   <p>Página de teste: preço e prazo são hipóteses e vão mudar com o que for medido aqui. Nenhum dado é vendido ou compartilhado.</p>
